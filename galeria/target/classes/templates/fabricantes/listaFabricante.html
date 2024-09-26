@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Fabricantes</title>
+</head>
+<body>
+    <h1>Lista de Fabricantes</h1>
+
+    <a th:href="@{/fabricantes/novo}">Adicionar Novo Fabricante</a> <!-- Link para adicionar novo fabricante -->
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Operação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre a lista de fabricantes fornecida pelo Controller -->
+            <tr th:each="fabricante : ${fabricantes}">
+                <td th:text="${fabricante.id}">ID</td> <!-- Exibe o ID do fabricante -->
+                <td th:text="${fabricante.nome}">Nome</td> <!-- Exibe o nome do fabricante -->
+                <td>
+                    <!-- Link para editar fabricante -->
+                    <a th:href="@{/fabricantes/editar/{id}(id=${fabricante.id})}">Editar</a> | 
+                    <!-- Link para excluir fabricante -->
+                    <a th:href="@{/fabricantes/excluir/{id}(id=${fabricante.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Link para voltar ao início -->
+    <br>
+</body>
+</html>

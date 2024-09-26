@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Veículos</title>
+</head>
+<body>
+    <h1>Lista de Veículos</h1>
+
+    <a th:href="@{/veiculos/novo}">Adicionar Novo Veículo</a> <!-- Link para adicionar novo veículo -->
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Fabricante</th>
+                <th>descrição</th>
+                <th>Operação</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre a lista de veículos fornecida pelo Controller -->
+            <tr th:each="veiculo : ${veiculos}">
+                <td th:text="${veiculo.id}">ID</td> <!-- Exibe o ID do veículo -->
+                <td th:text="${veiculo.nome}">Nome</td> <!-- Exibe o nome do veículo -->
+                <td th:text="${veiculo.tipo}">Tipo</td> <!-- Exibe o tipo do veículo (Carro/Moto) -->
+                <td th:text="${veiculo.fabricante.nome}">Fabricante</td> 
+                <td th:text="${veiculo.descricao}">descrição</td>
+                <td> 
+                    <!-- Link para editar veículo -->
+                    <a th:href="@{/veiculos/editar/{id}(id=${veiculo.id})}">Editar</a> | 
+                    <!-- Link para excluir veículo -->
+                    <a th:href="@{/veiculos/excluir/{id}(id=${veiculo.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    <br>
+</body>
+</html>

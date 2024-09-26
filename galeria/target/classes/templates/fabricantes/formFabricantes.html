@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulário de Fabricante</title>
+</head>
+<body>
+    <!-- Se fabricante.id é null, o título será 'Novo Fabricante'. Caso contrário, será 'Editar Fabricante' -->
+    <h1 th:text="${fabricante.id == null} ? 'Novo Fabricante' : 'Editar Fabricante'"></h1>
+
+    <!-- Formulário para criar ou editar -->
+    <form th:action="@{/fabricantes/salvar}" th:object="${fabricante}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" required />
+        </div>
+        
+        <div>
+            <button type="submit" th:text="${fabricante.id == null} ? 'Salvar' : 'Atualizar'">Salvar</button>
+        </div>
+    </form>
+
+    <!-- Link para voltar à lista de fabricantes -->
+    <br>
+    <a th:href="@{/fabricantes}">Voltar para a Lista de Fabricantes</a>
+</body>
+</html>
